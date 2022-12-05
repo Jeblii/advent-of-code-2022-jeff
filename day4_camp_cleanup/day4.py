@@ -3,13 +3,15 @@ from typing import Set
 with open("day4_camp_cleanup/input.txt") as f:
     lines = f.read().splitlines()
 
-parsed_lines = [e.split(',') for e in lines]
+parsed_lines = [e.split(",") for e in lines]
 
-def parse_range(section_numbers:str) -> Set[int]:
-    n1, n2 = section_numbers.split('-')
+
+def parse_range(section_numbers: str) -> Set[int]:
+    n1, n2 = section_numbers.split("-")
     return set(range(int(n1), int(n2) + 1))
 
-#part one
+
+# part one
 res = 0
 for pairs in parsed_lines:
     elf1, elf2 = pairs
@@ -20,7 +22,7 @@ for pairs in parsed_lines:
 
 print(res)
 
-#part two
+# part two
 res = 0
 for pairs in parsed_lines:
     elf1, elf2 = pairs

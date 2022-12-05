@@ -1,10 +1,10 @@
 from collections import Counter
 
 
-with open ('day2_rock_paper_scissors/input.txt') as f:
+with open("day2_rock_paper_scissors/input.txt") as f:
     lines = f.read().splitlines()
 
-matches = [tuple(el.split(' ')) for el in lines]
+matches = [tuple(el.split(" ")) for el in lines]
 print(matches)
 
 MAPPING_POINTS = {
@@ -23,7 +23,7 @@ MAPPING_SIGNALS = {
 }
 
 
-def match(hand1, hand2): 
+def match(hand1, hand2):
     points = 0
     points += MAPPING_POINTS[hand2]
     if MAPPING_SIGNALS[hand1] == MAPPING_SIGNALS[hand2]:
@@ -36,14 +36,15 @@ def match(hand1, hand2):
         return points + 6
     return points
 
+
 c = Counter(matches)
 print(c)
 
-#part 1
+# part 1
 outcome = [match(e[0], e[1]) for e in matches]
 print(sum(outcome))
 
-#part 2
+# part 2
 MAPPING_POINTS_2 = {
     "rock": 1,
     "paper": 2,
@@ -51,7 +52,7 @@ MAPPING_POINTS_2 = {
 }
 
 
-def match2(opponent_hand, strategy): 
+def match2(opponent_hand, strategy):
     points = 0
     if strategy == "X":
         if MAPPING_SIGNALS[opponent_hand] == "rock":
@@ -69,6 +70,7 @@ def match2(opponent_hand, strategy):
             return MAPPING_POINTS_2["scissor"] + 6
         elif MAPPING_SIGNALS[opponent_hand] == "scissor":
             return MAPPING_POINTS_2["rock"] + 6
+
 
 outcome = [match2(e[0], e[1]) for e in matches]
 print(sum(outcome))
