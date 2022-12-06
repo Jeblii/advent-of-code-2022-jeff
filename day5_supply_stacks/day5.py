@@ -15,43 +15,45 @@ for line in crates.splitlines():
         layer = [line[i + 1 : i + 2] for i in range(0, len(line), 4)]
         for i, contents in enumerate(layer):
             if contents.isalpha():
-                if not (i+1) in crate_lines.keys():
-                    crate_lines[(i+1)] = [contents]
+                if not (i + 1) in crate_lines.keys():
+                    crate_lines[(i + 1)] = [contents]
                 else:
-                    crate_lines[(i+1)].append(contents)
+                    crate_lines[(i + 1)].append(contents)
 
-#part one
-def move(n: int, from_tower: int, to_tower:int):
+# part one
+def move(n: int, from_tower: int, to_tower: int):
     for i, crate in enumerate(crate_lines[from_tower][:n]):
         crate_lines[to_tower].insert(0, crate)
 
     for i in range(n):
         crate_lines[from_tower].pop(0)
-    return 
+    return
+
 
 for instruction in instructions:
-    amount, start, finish = re.findall(r'\b\d+\b', instruction)
+    amount, start, finish = re.findall(r"\b\d+\b", instruction)
     move(int(amount), int(start), int(finish))
 
-message = ''.join([v[0] for k, v in sorted(crate_lines.items())])
+message = "".join([v[0] for k, v in sorted(crate_lines.items())])
 print(message)
 
-#part two
-def move_two(n: int, from_tower: int, to_tower:int):
+# part two
+def move_two(n: int, from_tower: int, to_tower: int):
     for i, crate in enumerate(crate_lines[from_tower][:n]):
         crate_lines[to_tower].insert(i, crate)
         crate_lines[from_tower].pop(0)
     print(sorted(crate_lines.items()))
 
-    #for i in range(n):
-        
-    return 
+    # for i in range(n):
+
+    return
+
 
 print(sorted(crate_lines.items()))
 
 for instruction in instructions:
-    amount, start, finish = re.findall(r'\b\d+\b', instruction)
+    amount, start, finish = re.findall(r"\b\d+\b", instruction)
     move_two(int(amount), int(start), int(finish))
 
-message = ''.join([v[0] for k, v in sorted(crate_lines.items())])
+message = "".join([v[0] for k, v in sorted(crate_lines.items())])
 print(message)
